@@ -1,0 +1,25 @@
+Please provide a solution that meets the requirements outlined below 
+User requirements
+1.	User can create a patient with the following demographic information:
+a.	Forename
+b.	Surname
+c.	Date of birth
+d.	Primary contact number
+e.	Primary address
+2.	The following audit information must be recorded when creating a patient:
+a.	User Identifier (who created the patient record?)
+b.	Date of creation
+c.	Time of creation
+
+Technical Requirements
+1.	Solution must utilise (but not completely restricted to) Microsoft technologies, for example: C#
+a.	You may utilise other technologies for some parts of the solution but there must some use of Microsoft Technologies
+2.	The Create action must take no longer than 500 milliseconds to notify the user that the action has completed (or failed)
+
+Quality Standard Requirements
+1.	There must be an appropriate level of (unit) test coverage
+
+Documentation Requirements
+1.	Briefly outline the architecture of the solution and some key highlights of the design
+2.	Describe how the functionality could be extended
+
