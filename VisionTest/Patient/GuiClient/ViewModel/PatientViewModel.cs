@@ -15,7 +15,6 @@ namespace GuiClient.ViewModel
     class PatientViewModel : INotifyPropertyChanged
     {
         private PatientModel patientModel;
-        //private APIClient apiClient;
         private HttpClient httpClient;
         private String clientUrl;
 
@@ -24,10 +23,10 @@ namespace GuiClient.ViewModel
             get { return patientModel.User; }
             set { patientModel.User = value; } 
         }
-        public String ForeName
+        public String Forename
         {
-            get { return patientModel.ForeName; }
-            set { patientModel.ForeName = value; }
+            get { return patientModel.Forename; }
+            set { patientModel.Forename = value; }
         }
         public String Surname
         {
@@ -66,8 +65,8 @@ namespace GuiClient.ViewModel
 
         public String Postcode
         {
-            get { return patientModel.DateOfBirth; }
-            set { patientModel.DateOfBirth = value; }
+            get { return patientModel.Postcode; }
+            set { patientModel.Postcode = value; }
         }
 
         public String Response
@@ -82,7 +81,7 @@ namespace GuiClient.ViewModel
             patientModel = new PatientModel
             {
                 User = "",
-                ForeName = "",
+                Forename = "",
                 Surname = "",
                 DateOfBirth = "",
                 Phone = "",
@@ -94,7 +93,8 @@ namespace GuiClient.ViewModel
             };
 
             httpClient = new HttpClient();
-            clientUrl = "http://localhost:5000/api/Patient";
+            clientUrl = "/api/Patient";
+            httpClient.BaseAddress = new Uri("http://localhost:5000");
             //apiClient = new APIClient("http://localhost:5000/api/Patient");
         }
 
@@ -117,7 +117,7 @@ namespace GuiClient.ViewModel
             APIModel reqModel = new APIModel
             {
                 User = patientModel.User,
-                ForeName = patientModel.ForeName,
+                Forename = patientModel.Forename,
                 Surname = patientModel.Surname,
                 DateOfBirth = patientModel.DateOfBirth,
                 PrimaryContactNumber = patientModel.Phone,
@@ -126,14 +126,15 @@ namespace GuiClient.ViewModel
                 PrimaryAddressLine3 = patientModel.AddrLine3,
                 PostCode = patientModel.Postcode
             };
-            var requestJSON = JsonConvert.SerializeObject(reqModel);
 
+            var requestJSON = JsonConvert.SerializeObject(reqModel, Formatting.Indented);
+            var start = DateTime.Now;
             var response = await httpClient.PostAsync(clientUrl, new StringContent(requestJSON, Encoding.UTF8, "application/json"));
-            
-            patientModel.Response = string.Format("Status = {0} - {1}", response.StatusCode, response.Content);
-
-            //var response = await apiClient.SendRequest(reqModel);
-            //patientModel.Response = response;
+            //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, clientUrl);
+            //var response = await httpClient.SendAsync(request);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            TimeSpan timeDiff = DateTime.Now - start;
+            Response = string.Format("Elapsed={0}mS Status = {1} - {2}", timeDiff.TotalMilliseconds, response.StatusCode, responseBody );
         }
 
         public bool CanStart()

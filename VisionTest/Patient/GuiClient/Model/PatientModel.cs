@@ -9,7 +9,7 @@ namespace GuiClient.Model
     class PatientModel
     {
         public String User { get; set; }
-        public String ForeName { get; set; }
+        public String Forename { get; set; }
         public String Surname { get; set; }
         public String DateOfBirth { get; set; }
         public String Phone { get; set; }

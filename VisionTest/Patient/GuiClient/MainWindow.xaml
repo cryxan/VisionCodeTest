@@ -43,6 +43,6 @@
         <TextBox Grid.Row="9" Grid.Column="1" x:Name="Postcode" Text="{Binding Postcode}" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="577" />
         <Button x:Name="Submit" Content="Submit" Command="{Binding CmdSubmitPressed}" Grid.Column="1" HorizontalAlignment="Left" Margin="624,10.333,0,0" Grid.Row="9" VerticalAlignment="Top" Width="75" Click="Submit_Click"/>
         <Label Grid.Row="11" Grid.Column="0" Content="Response" HorizontalAlignment="Right"  VerticalAlignment="Top" Height="26"  Width="62" Margin="0,0.333,0,0"/>
-        <TextBox Grid.Row="11" Grid.Column="1" x:Name="Response" Text="{Binding Response}" HorizontalAlignment="Left" Height="103"  VerticalAlignment="Top" Width="577" />
+        <TextBox Grid.Row="11" Grid.Column="1" x:Name="Response" Text="{Binding Response}" HorizontalAlignment="Left" Height="103" TextWrapping="Wrap"  VerticalAlignment="Top" Width="577" IsEnabled="False"/>
     </Grid>
 </Window>

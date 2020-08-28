@@ -24,6 +24,12 @@ namespace Patient.Controllers
             patientContext = pc;
         }
 
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "Get", "Works" };
+        }
+
         // POST api/<PatientController>
         [HttpPost]
         public IActionResult Post([FromBody] AddPatientReq addPatientReq)
