@@ -24,7 +24,6 @@ namespace Patient.Controllers
             patientContext = pc;
         }
 
-
         // POST api/<PatientController>
         [HttpPost]
         public IActionResult Post([FromBody] AddPatientReq addPatientReq)
