@@ -11,8 +11,14 @@ namespace Patient
 {
     public class Program
     {
+        public static bool testMode = false;
         public static void Main(string[] args)
         {
+            String testModeCheck =  Environment.GetEnvironmentVariable("PATIENT_API_TEST_MODE");
+            if (testModeCheck != null && testModeCheck == "TRUE")
+            {
+                testMode = true;
+            }
             CreateHostBuilder(args).Build().Run();
         }
 

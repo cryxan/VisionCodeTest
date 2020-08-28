@@ -128,8 +128,8 @@ namespace GuiClient.ViewModel
             };
             var requestJSON = JsonConvert.SerializeObject(reqModel);
 
-            // var response = await httpClient.PostAsync(clientUrl, new StringContent(requestJSON, Encoding.UTF8, "application/json"));
-            var response = await httpClient.PostAsync(clientUrl, new FormUrlEncodedContent(JsonConvert.DeserializeObject<Dictionary<string, string>>(requestJSON)));
+            var response = await httpClient.PostAsync(clientUrl, new StringContent(requestJSON, Encoding.UTF8, "application/json"));
+            
             patientModel.Response = string.Format("Status = {0} - {1}", response.StatusCode, response.Content);
 
             //var response = await apiClient.SendRequest(reqModel);

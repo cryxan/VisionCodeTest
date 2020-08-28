@@ -28,8 +28,6 @@ namespace Patient.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] AddPatientReq addPatientReq)
         {
-            //var message = new HttpResponseMessage(System.Net.HttpStatusCode.Created);
-
             // Validate user
             var user = patientContext.User.Where(u => u.Name == addPatientReq.User).FirstOrDefault();
             if (user == null)

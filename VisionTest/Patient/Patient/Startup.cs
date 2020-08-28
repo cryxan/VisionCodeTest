@@ -26,7 +26,14 @@ namespace Patient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PatientContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            if (Program.testMode == true)
+            {
+                services.AddDbContext<PatientContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:TestConnection"]));
+            }
+            else
+            {
+                services.AddDbContext<PatientContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            }
             services.AddControllers();
         }
 
